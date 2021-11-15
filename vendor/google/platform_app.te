@@ -8,3 +8,11 @@ allow platform_app nfc_service:service_manager find;
 
 allow platform_app fwk_stats_service:service_manager find;
 binder_use(platform_app)
+
+# Allow GRIL-S to use wifi/radio_ext
+allow platform_app hal_wifi_ext_hwservice:hwservice_manager find;
+binder_call(platform_app, hal_wifi_ext)
+binder_call(hal_wifi_ext, platform_app)
+allow platform_app hal_radioext_hwservice:hwservice_manager find;
+binder_call(platform_app, hal_radioext_default)
+binder_call(hal_radioext_default, platform_app)
